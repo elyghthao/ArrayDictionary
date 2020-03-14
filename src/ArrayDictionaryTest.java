@@ -11,6 +11,13 @@ public class ArrayDictionaryTest {
         assertTrue(dict.add(4, 84));
         assertTrue(dict.add(7, 87));
         System.out.println(dict);
+
+        //delete below this later
+        dict.remove(4);
+        System.out.println(dict);
+        dict.remove(4);
+        System.out.println(dict);
+
     }
 
     @Test

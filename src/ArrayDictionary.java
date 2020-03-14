@@ -58,6 +58,33 @@ public class ArrayDictionary implements Dictionary {
     @Override
     public boolean remove(int key) {
         // homework
+        int hashedKey = hashFunction(key);
+        if (entries[hashedKey] ==null) {//key does not exists in a dictionary with no collision
+            return false;
+        }
+
+        KVEntry ptr = entries[hashedKey];
+        KVEntry previousNode = null;
+        KVEntry currentNode = null;
+        while (ptr != null) {
+            previousNode = currentNode;
+            currentNode = ptr;
+            ptr = ptr.next;
+            if (currentNode.key == key) {//if key is found
+                if (previousNode != null) {
+                    previousNode.next = ptr;
+                }
+                entries[hashedKey] = ptr;
+                count--;
+                return true;
+            }
+
+
+
+        }
+
+
+
         return false;
     }
 
