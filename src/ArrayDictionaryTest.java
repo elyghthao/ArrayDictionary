@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.lang.reflect.Array;
+
 import static org.junit.Assert.*;
 
 public class ArrayDictionaryTest {
@@ -77,6 +79,47 @@ public class ArrayDictionaryTest {
     @Test
     public void contains() {
         // homework
-        assertTrue(false);  // place holder
+
+        //set1
+        ArrayDictionary test1 = new ArrayDictionary(5);
+        assertFalse(test1.contains(-1));
+        assertFalse(test1.contains(0));
+        assertFalse(test1.contains(1));
+
+        //set2
+        ArrayDictionary test2 = new ArrayDictionary(1);
+        test2.add(0,103);
+        assertFalse(test2.contains(2));
+        assertTrue(test2.contains(0));
+
+        //set3
+        ArrayDictionary test3 = new ArrayDictionary(2);
+        test3.add(0,103);
+        test3.add(1,105);
+        assertTrue(test3.contains(0));
+        assertTrue(test3.contains(1));
+        assertFalse(test3.contains(2));
+        assertFalse(test3.contains(3));
+
+        //set4
+        ArrayDictionary test4 = new ArrayDictionary(3);
+        test4.add(0,103);
+        test4.add(1,105);
+        assertFalse(test4.contains(3));
+        test4.add(2,206);
+        assertTrue(test4.contains(1));
+
+        //set5
+        ArrayDictionary test5 = new ArrayDictionary(3);
+        test5.add(0,103);
+        test5.add(1,105);
+        test5.add(2,206);
+        test5.add(4,407);
+        assertTrue(test5.contains(1));
+        assertTrue(test5.contains(4));
+        assertFalse(test5.contains(7));
+        assertFalse(test5.contains(8));
+
+
     }
 }

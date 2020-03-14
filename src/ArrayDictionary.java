@@ -59,7 +59,7 @@ public class ArrayDictionary implements Dictionary {
     public boolean remove(int key) {
         // homework
         int hashedKey = hashFunction(key);
-        if (entries[hashedKey] ==null) {//key does not exists in a dictionary with no collision
+        if (hashedKey<0 || entries[hashedKey]==null) {//key does not exists in a dictionary with no collision
             return false;
         }
 
@@ -81,13 +81,7 @@ public class ArrayDictionary implements Dictionary {
                 count--;
                 return true;
             }
-
-
-
         }
-
-
-
         return false;
     }
 
@@ -96,6 +90,23 @@ public class ArrayDictionary implements Dictionary {
     @Override
     public boolean contains(int key) {
         // homework
+        int hashedKey = hashFunction(key);
+        if (hashedKey<0 || entries[hashedKey]==null) {//key does not exists in a dictionary with no collision
+            return false;
+        }
+
+        //following code goes through the collisions
+        KVEntry ptr = entries[hashedKey];
+        KVEntry previousNode = null;
+        KVEntry currentNode = null;
+        while (ptr != null) {
+            previousNode = currentNode;
+            currentNode = ptr;
+            ptr = ptr.next;
+            if (currentNode.key == key) {//if key is found
+                return true;
+            }
+        }
         return false;
     }
 
