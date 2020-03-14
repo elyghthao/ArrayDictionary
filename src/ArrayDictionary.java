@@ -63,6 +63,7 @@ public class ArrayDictionary implements Dictionary {
             return false;
         }
 
+        //following code goes through the collisions
         KVEntry ptr = entries[hashedKey];
         KVEntry previousNode = null;
         KVEntry currentNode = null;
@@ -74,7 +75,9 @@ public class ArrayDictionary implements Dictionary {
                 if (previousNode != null) {
                     previousNode.next = ptr;
                 }
-                entries[hashedKey] = ptr;
+                if (currentNode.key==entries[hashedKey].key) {
+                    entries[hashedKey] = ptr;
+                }
                 count--;
                 return true;
             }
